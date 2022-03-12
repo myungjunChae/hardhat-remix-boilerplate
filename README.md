@@ -1,10 +1,15 @@
 # hardhat-remix-boilerplate
 
+### 프로젝트 설명
+
+hardhat 기본적인 보일러플레이트입니다. remixd를 손쉽게 대응하기 위해 만들어졌으며, typechain 등의 유요한 기능들도 점진적으로 추가해나갈 예정입니다.
+
 ### 명령어
 
 ```
-npx hardhat compile // 컨트랙트가 컴파일이 가능한지
-npx hardhat test // 테스트코드 돌리기
-npx hardhat deploy --network // 배포 (--network args가 없으면 hardhat)
-npx hardhat remix // [remix](https://remix.ethereum.org/) ide에서 로컬 프로젝트를 당겨갈 수 있도록 설정
+npx hardhat compile // contract compile
+npx hardhat test // run testcode
+npx hardhat deploy --network // deploy on network (if empty network arg = default hardhat)
+npx hardhat remix // upload to [remix](https://remix.ethereum.org/) ide from local
+npx hardhat typechain // convert contract to typescript
 ```
