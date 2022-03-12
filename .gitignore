@@ -2,3 +2,9 @@ node_modules
 artifacts
 cache
 package-lock.json
+
+# ide
+.idea
+
+## generated
+typechain-types*
