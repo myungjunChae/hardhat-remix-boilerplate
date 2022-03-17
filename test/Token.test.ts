@@ -1,9 +1,11 @@
 import { SignerWithAddress } from "@nomiclabs/hardhat-ethers/signers";
 import * as chai from "chai";
+import chaiAsPromised from "chai-as-promised";
 import { Contract, ContractFactory } from "ethers";
 import { ethers } from "hardhat";
 
-let should = chai.should();
+chai.use(chaiAsPromised);
+chai.should();
 
 describe("Token contract", async () => {
 	let tokenFactory: ContractFactory;

@@ -9,7 +9,7 @@
     "keywords": [],
     "author": "",
     "license": "ISC",
-    "dependencies": {
+    "devDependencies": {
         "@nomiclabs/hardhat-ethers": "^2.0.5",
         "@nomiclabs/hardhat-waffle": "^2.0.2",
         "@nomiclabs/hardhat-web3": "^2.0.0",
@@ -17,6 +17,7 @@
         "@typechain/ethers-v5": "^9.0.0",
         "@typechain/hardhat": "^4.0.0",
         "@types/chai": "^4.3.0",
+        "@types/chai-as-promised": "^7.1.5",
         "@types/mocha": "^9.1.0",
         "@types/node": "^17.0.21",
         "chai": "^4.3.6",
