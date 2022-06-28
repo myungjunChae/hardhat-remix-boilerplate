@@ -1,4 +1,5 @@
-pragma solidity ^0.7.0;
+// SPDX-License-Identifier: MIT
+pragma solidity 0.8.9;
 
 contract Token {
     string public name = "My Hardhat Token";

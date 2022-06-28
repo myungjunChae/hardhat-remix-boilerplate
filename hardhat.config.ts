@@ -14,7 +14,7 @@ const WALLET_PRIVATE_KEY = process.env.WALLET_PRIVATE_KEY ?? "";
 const ETHER_SCAN_API = process.env.ETHER_SCAN_API ?? "";
 
 const config: HardhatUserConfig = {
-	solidity: "0.8.7",
+	solidity: "0.8.9",
 	networks: {
 		rinkeby: {
 			url: INFURA_END_POINT,
