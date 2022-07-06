@@ -9,22 +9,30 @@ import { execSync } from "child_process";
 import dotenv from "dotenv";
 dotenv.config();
 
-const INFURA_END_POINT = process.env.INFURA_END_POINT;
-const WALLET_PRIVATE_KEY = process.env.WALLET_PRIVATE_KEY ?? "";
-const ETHER_SCAN_API = process.env.ETHER_SCAN_API ?? "";
+let RINKEBY_METADATA = {
+	INFURA_END_POINT: process.env.INFURA_END_POINT_RINKEBY ?? "",
+	WALLET_PRIVATE_KEY: process.env.RINKEBY_WALLET_PRIVATE_KEY ?? "",
+	ETHER_SCAN_API: process.env.ETHER_SCAN_API ?? "",
+};
+
+let MAINNET_METADATA = {
+	INFURA_END_POINT: process.env.INFURA_END_POINT_MAINNET ?? "",
+	WALLET_PRIVATE_KEY: process.env.MAINNET_WALLET_PRIVATE_KEY ?? "",
+	ETHER_SCAN_API: process.env.ETHER_SCAN_API ?? "",
+};
 
 const config: HardhatUserConfig = {
 	solidity: "0.8.9",
 	networks: {
 		rinkeby: {
-			url: INFURA_END_POINT,
-			accounts: [WALLET_PRIVATE_KEY], //todo : 배포할 계정으로 변경해야함
+			url: RINKEBY_METADATA.INFURA_END_POINT,
+			accounts: [RINKEBY_METADATA.WALLET_PRIVATE_KEY],
 		},
 	},
 	//https://hardhat.org/plugins/nomiclabs-hardhat-etherscan.html
 	etherscan: {
 		apiKey: {
-			rinkeby: ETHER_SCAN_API,
+			rinkeby: RINKEBY_METADATA.ETHER_SCAN_API,
 		},
 	},
 };
