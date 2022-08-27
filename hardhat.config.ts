@@ -3,6 +3,8 @@ import "@nomiclabs/hardhat-waffle";
 import "@nomiclabs/hardhat-web3";
 import "@nomiclabs/hardhat-etherscan";
 import "@typechain/hardhat";
+import "hardhat-deploy";
+
 import { HardhatUserConfig } from "hardhat/types";
 
 import { execSync } from "child_process";
@@ -22,12 +24,28 @@ let MAINNET_METADATA = {
 };
 
 const config: HardhatUserConfig = {
-	solidity: "0.8.9",
-	networks: {
-		rinkeby: {
-			url: RINKEBY_METADATA.INFURA_END_POINT,
-			accounts: [RINKEBY_METADATA.WALLET_PRIVATE_KEY],
+	solidity: {
+		version: "0.8.9",
+		settings: {
+			optimizer: {
+				enabled: true,
+				runs: 200,
+			},
 		},
+	},
+	namedAccounts: {
+		deployer: 0,
+	},
+	networks: {
+		// mainnet: {
+		// 	url: MAINNET_METADATA.INFURA_END_POINT,
+		// 	accounts: [MAINNET_METADATA.WALLET_PRIVATE_KEY],
+		// },
+		// rinkeby: {
+		// 	url: RINKEBY_METADATA.INFURA_END_POINT,
+		// 	accounts: [RINKEBY_METADATA.WALLET_PRIVATE_KEY],
+		// 	chainId: 4,
+		// },
 	},
 	//https://hardhat.org/plugins/nomiclabs-hardhat-etherscan.html
 	etherscan: {
@@ -39,12 +57,6 @@ const config: HardhatUserConfig = {
 
 task("remix", "run remixd").setAction(async () => {
 	execSync(`remixd -s ./ —remix-ide https://remix.ethereum.org`, {
-		stdio: "inherit",
-	});
-});
-
-task("deploy", "deploy contract").setAction(async (taskArgs, hre) => {
-	execSync(`npx hardhat run scripts/deploy.ts --network ${hre.network.name}`, {
 		stdio: "inherit",
 	});
 });
