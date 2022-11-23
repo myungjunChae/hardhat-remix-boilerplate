@@ -1,9 +1,9 @@
-import { task } from "hardhat/config";
+import "@nomiclabs/hardhat-etherscan";
 import "@nomiclabs/hardhat-waffle";
 import "@nomiclabs/hardhat-web3";
-import "@nomiclabs/hardhat-etherscan";
 import "@typechain/hardhat";
 import "hardhat-deploy";
+import { task } from "hardhat/config";
 
 import { HardhatUserConfig } from "hardhat/types";
 
@@ -25,7 +25,7 @@ let MAINNET_METADATA = {
 
 const config: HardhatUserConfig = {
 	solidity: {
-		version: "0.8.9",
+		version: "0.8.17",
 		settings: {
 			optimizer: {
 				enabled: true,
