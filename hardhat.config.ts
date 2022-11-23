@@ -11,16 +11,18 @@ import { execSync } from "child_process";
 import dotenv from "dotenv";
 dotenv.config();
 
-let RINKEBY_METADATA = {
-	INFURA_END_POINT: process.env.INFURA_END_POINT_RINKEBY ?? "",
-	WALLET_PRIVATE_KEY: process.env.RINKEBY_WALLET_PRIVATE_KEY ?? "",
+let DEFAULT_CONFIG = {
 	ETHER_SCAN_API: process.env.ETHER_SCAN_API ?? "",
 };
 
-let MAINNET_METADATA = {
+let GOERLI_CONFIG = {
+	INFURA_END_POINT: process.env.INFURA_END_POINT_GOERLI ?? "",
+	WALLET_PRIVATE_KEY: process.env.GOERLI_WALLET_PRIVATE_KEY ?? "",
+};
+
+let MAINNET_CONFIG = {
 	INFURA_END_POINT: process.env.INFURA_END_POINT_MAINNET ?? "",
 	WALLET_PRIVATE_KEY: process.env.MAINNET_WALLET_PRIVATE_KEY ?? "",
-	ETHER_SCAN_API: process.env.ETHER_SCAN_API ?? "",
 };
 
 const config: HardhatUserConfig = {
@@ -37,20 +39,22 @@ const config: HardhatUserConfig = {
 		deployer: 0,
 	},
 	networks: {
-		// mainnet: {
-		// 	url: MAINNET_METADATA.INFURA_END_POINT,
-		// 	accounts: [MAINNET_METADATA.WALLET_PRIVATE_KEY],
-		// },
-		// rinkeby: {
-		// 	url: RINKEBY_METADATA.INFURA_END_POINT,
-		// 	accounts: [RINKEBY_METADATA.WALLET_PRIVATE_KEY],
-		// 	chainId: 4,
-		// },
+		mainnet: {
+			url: MAINNET_CONFIG.INFURA_END_POINT,
+			accounts: [MAINNET_CONFIG.WALLET_PRIVATE_KEY],
+			chainId: 1,
+		},
+		goerli: {
+			url: GOERLI_CONFIG.INFURA_END_POINT,
+			accounts: [GOERLI_CONFIG.WALLET_PRIVATE_KEY],
+			chainId: 5,
+		},
 	},
 	//https://hardhat.org/plugins/nomiclabs-hardhat-etherscan.html
 	etherscan: {
 		apiKey: {
-			rinkeby: RINKEBY_METADATA.ETHER_SCAN_API,
+			goerli: DEFAULT_CONFIG.ETHER_SCAN_API,
+			mainnet: DEFAULT_CONFIG.ETHER_SCAN_API,
 		},
 	},
 };
