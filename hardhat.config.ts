@@ -4,8 +4,8 @@ import "@nomiclabs/hardhat-web3";
 import "@typechain/hardhat";
 import "hardhat-deploy";
 import { task } from "hardhat/config";
-
 import { HardhatUserConfig } from "hardhat/types";
+import "solidity-coverage";
 
 import { execSync } from "child_process";
 import dotenv from "dotenv";
@@ -16,12 +16,12 @@ let DEFAULT_CONFIG = {
 };
 
 let GOERLI_CONFIG = {
-	INFURA_END_POINT: process.env.INFURA_END_POINT_GOERLI ?? "",
+	NODE_END_POINT: process.env.NODE_END_POINT_GOERLI ?? "",
 	WALLET_PRIVATE_KEY: process.env.GOERLI_WALLET_PRIVATE_KEY ?? "",
 };
 
 let MAINNET_CONFIG = {
-	INFURA_END_POINT: process.env.INFURA_END_POINT_MAINNET ?? "",
+	NODE_END_POINT: process.env.NODE_END_POINT_MAINNET ?? "",
 	WALLET_PRIVATE_KEY: process.env.MAINNET_WALLET_PRIVATE_KEY ?? "",
 };
 
@@ -40,12 +40,12 @@ const config: HardhatUserConfig = {
 	},
 	networks: {
 		mainnet: {
-			url: MAINNET_CONFIG.INFURA_END_POINT,
+			url: MAINNET_CONFIG.NODE_END_POINT,
 			accounts: [MAINNET_CONFIG.WALLET_PRIVATE_KEY],
 			chainId: 1,
 		},
 		goerli: {
-			url: GOERLI_CONFIG.INFURA_END_POINT,
+			url: GOERLI_CONFIG.NODE_END_POINT,
 			accounts: [GOERLI_CONFIG.WALLET_PRIVATE_KEY],
 			chainId: 5,
 		},
